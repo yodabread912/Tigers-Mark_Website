@@ -1,0 +1,9 @@
+<svg width="520" height="140" viewBox="0 0 520 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="140" rx="10" fill="#F3F4F6"/>
+  <path d="M44 24L82 36L58 52L84 64L50 82L74 96L34 116L26 108L44 90L18 78L44 62L22 48L44 24Z" fill="#F15A2A"/>
+  <path d="M74 32C86 32 96 42 96 54C96 67 86 76 74 76C62 76 52 67 52 54C52 42 62 32 74 32Z" fill="#FFFFFF"/>
+  <path d="M60 52C66 48 76 48 84 54C78 58 70 60 62 58L60 52Z" fill="#F15A2A"/>
+  <text x="118" y="50" fill="#0B2A56" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="1.2">TIGER'S</text>
+  <text x="118" y="82" fill="#0B2A56" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="1.2">MARK</text>
+  <text x="118" y="114" fill="#0B2A56" font-size="22" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="1.1">CORPORATION</text>
+</svg>
