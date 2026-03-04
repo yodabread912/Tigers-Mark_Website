@@ -179,25 +179,13 @@ function ProcessIcon({ icon }: { icon: string }) {
   switch (icon) {
     case "feasibility":
       return (
-        <svg viewBox="0 0 24 24" role="img" focusable="false">
-          <rect
-            x="6"
-            y="4"
-            width="12"
-            height="16"
-            rx="1.8"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path
-            d="M9 8h6M9 12h6M9 16h4"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path d="M14 3v3" fill="none" stroke="currentColor" strokeWidth="2" />
-        </svg>
+        <Image
+          src="/home/feasibility-study.png"
+          alt=""
+          width={36}
+          height={36}
+          className="process-icon-image"
+        />
       );
     case "design":
       return (
@@ -218,32 +206,13 @@ function ProcessIcon({ icon }: { icon: string }) {
       );
     case "permit":
       return (
-        <svg viewBox="0 0 24 24" role="img" focusable="false">
-          <path
-            d="M4 20h16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path
-            d="M6 13l2-5h8l2 5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path
-            d="M9 8V6.8c0-1.7 1.3-3 3-3s3 1.3 3 3V8"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path
-            d="M12 13v3"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-        </svg>
+        <Image
+          src="/home/lgu-permit.png"
+          alt=""
+          width={36}
+          height={36}
+          className="process-icon-image"
+        />
       );
     case "construction":
       return (
@@ -289,21 +258,13 @@ function ProcessIcon({ icon }: { icon: string }) {
       );
     case "post":
       return (
-        <svg viewBox="0 0 24 24" role="img" focusable="false">
-          <path
-            d="M14 5a4 4 0 0 0 5 5l-3.2 3.2-5-5L14 5z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path
-            d="M11.2 9.8L6.1 14.9a2.2 2.2 0 0 0 3.1 3.1l5.1-5.1"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <circle cx="7.7" cy="16.3" r="0.8" fill="currentColor" />
-        </svg>
+        <Image
+          src="/home/post-construction.png"
+          alt=""
+          width={36}
+          height={36}
+          className="process-icon-image"
+        />
       );
     default:
       return (
