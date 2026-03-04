@@ -1648,6 +1648,7 @@ html {
     0 8px 14px rgba(0, 0, 0, 0.06);
   padding: 0 0 1.05rem;
   overflow: hidden;
+  font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
 }
 
 .quote-thumb {
@@ -1764,18 +1765,19 @@ html {
   text-align: center;
   max-height: calc(100vh - 4rem);
   overflow-y: auto;
+  font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
 }
 
 .quote-modal-card h2 {
   margin: 0 0 0.35rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #111827;
 }
 
 .quote-modal-subtitle {
   margin: 0 0 1rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #6b7280;
 }
 
@@ -1797,11 +1799,17 @@ html {
 }
 
 .quote-form label {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #374151;
   display: grid;
   gap: 0.35rem;
+}
+
+.quote-label-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
 }
 
 .quote-form input,
@@ -1811,7 +1819,7 @@ html {
   border: 1px solid #e5e7eb;
   border-radius: 6px;
   padding: 0.5rem 0.6rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #111827;
   font-family: inherit;
   background: #ffffff;
@@ -1836,6 +1844,17 @@ html {
   background-repeat: no-repeat;
 }
 
+.quote-form select option {
+  color: #1f2937;
+  background: #ffffff;
+}
+
+.quote-form select option:checked,
+.quote-form select option:hover {
+  color: #ffffff;
+  background: #f15a2a;
+}
+
 .required {
   color: #f15a2a;
 }
@@ -1846,7 +1865,7 @@ html {
   gap: 0.45rem;
   align-items: start;
   font-weight: 400;
-  font-size: 0.6rem;
+  font-size: 0.68rem;
   color: #6b7280;
 }
 
@@ -1867,7 +1886,7 @@ html {
   border: none;
   border-radius: 6px;
   padding: 0.45rem 1.1rem;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
@@ -2401,13 +2420,9 @@ html {
 
 .project-info-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.1rem;
-  text-align: center;
-  justify-items: center;
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: left;
   margin-bottom: 1.8rem;
 }
 

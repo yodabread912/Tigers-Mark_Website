@@ -17,7 +17,10 @@ export default function QuotePage() {
   const totalPages = Math.ceil(QUOTE_PRODUCTS.length / ITEMS_PER_PAGE);
   const start = (currentPage - 1) * ITEMS_PER_PAGE;
   const visibleProducts = QUOTE_PRODUCTS.slice(start, start + ITEMS_PER_PAGE);
-  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+  const pageNumbers = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1,
+  );
 
   return (
     <div className="quote-page">
@@ -122,39 +125,49 @@ export default function QuotePage() {
               }}
             >
               <label>
-                Name <span className="required">*</span>
+                <span className="quote-label-text">
+                  Name <span className="required">*</span>
+                </span>
                 <input type="text" placeholder="John Doe" />
               </label>
               <label>
-                Email Address <span className="required">*</span>
+                <span className="quote-label-text">
+                  Email Address <span className="required">*</span>
+                </span>
                 <input type="email" placeholder="john@example.com" />
               </label>
               <label>
-                Phone Number <span className="required">*</span>
+                <span className="quote-label-text">
+                  Phone Number <span className="required">*</span>
+                </span>
                 <input type="tel" placeholder="**********" />
               </label>
               <label>
-                Subject <span className="required">*</span>
-                <select defaultValue="">
-                  <option value="" disabled>
-                    Select a subject
-                  </option>
-                  <option>Residential</option>
-                  <option>Commercial</option>
-                  <option>Renovation</option>
+                <span className="quote-label-text">
+                  Subject <span className="required">*</span>
+                </span>
+                <select defaultValue="General Inquiry">
+                  <option>General Inquiry</option>
+                  <option>For Products</option>
+                  <option>For Services</option>
+                  <option>Partnership Opportunity</option>
+                  <option>Careers</option>
+                  <option>Other</option>
                 </select>
               </label>
               <label>
-                Your Message <span className="required">*</span>
+                <span className="quote-label-text">
+                  Your Message <span className="required">*</span>
+                </span>
                 <textarea
                   rows={5}
                   placeholder="Tell us about your project or inquiry..."
                 />
               </label>
               <label className="quote-checkbox">
-                <input type="checkbox" />
-                I agree to the terms and conditions and privacy policy. I consent
-                to Tigers Mark Corporation contacting me about my inquiry.
+                <input type="checkbox" />I agree to the terms and conditions and
+                privacy policy. I consent to Tigers Mark Corporation contacting
+                me about my inquiry.
               </label>
               <div className="quote-form-actions">
                 <button

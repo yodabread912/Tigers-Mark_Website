@@ -1,52 +1,9 @@
 ﻿"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
-
-const PARTNERS = [
-  { id: 1, name: "AMSI Supply", logo: "/partners/01-amsi.png" },
-  { id: 2, name: "Bottom Blocks Inc.", logo: "/partners/02-bottom-blocks.png" },
-  {
-    id: 3,
-    name: "CT Consigna Construction Corp",
-    logo: "/partners/03-ct-consigna.png",
-  },
-  { id: 4, name: "DUCATI Philippines", logo: "/partners/04-ducati.png" },
-  { id: 5, name: "Fursys Philippines", logo: "/partners/05-fursys.png" },
-  {
-    id: 6,
-    name: "Goldshine Pharmaceuticals",
-    logo: "/partners/06-goldshine.png",
-  },
-  {
-    id: 7,
-    name: "Dreambuilders Pro, Inc.",
-    logo: "/partners/07-dreambuilders.png",
-  },
-  { id: 8, name: "Krispy Kreme", logo: "/partners/08-krispy-kreme.png" },
-  { id: 9, name: "Llaollao", logo: "/partners/09-llaollao.png" },
-  {
-    id: 10,
-    name: "Metal Alliance Rolling Mills Corporation",
-    logo: "/partners/10-metal-alliance.png",
-  },
-  {
-    id: 11,
-    name: "Balai Pandesal",
-    logo: "/partners/11-balai-pandesal.png",
-  },
-  {
-    id: 12,
-    name: "Dylan Patisserie",
-    logo: "/partners/12-dylan-patisserie.png",
-  },
-  { id: 13, name: "EO Executive Optical" },
-  { id: 14, name: "Golden Gibbon" },
-  { id: 15, name: "Jamaican" },
-  { id: 16, name: "MINISO" },
-  { id: 17, name: "SHAKA" },
-  { id: 18, name: "Philippine National Bank" },
-];
+import { PARTNERS } from "./data";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -91,7 +48,12 @@ export default function PartnersPage() {
                   />
                 ) : null}
               </div>
-              <p className="partner-name">{partner.name}</p>
+              <Link
+                href={`/partners/${partner.id}`}
+                className="partner-name-link"
+              >
+                <p className="partner-name">{partner.name}</p>
+              </Link>
             </article>
           ))}
         </div>

@@ -300,32 +300,47 @@ const FAQ_ITEMS = [
   {
     question: "What Construction services does tiger’s mark corporation offer?",
     answer:
-      "We provide end-to-end services including planning, design coordination, permit processing, construction execution, and post-construction support for residential and commercial developments.",
+      "We deliver comprehensive construction solutions including: General Contracting, Construction Management, Design-Build Services, Renovations & Remodeling, Site Preparation & Excavation, Concrete Works, Electrical & Plumbing Installations, Interior/Exterior Finishing, and Project Planning & Consultation — all tailored to your vision.",
   },
   {
     question: "What types of Construction projects do you Undertake?",
     answer:
-      "We undertake residential homes, commercial spaces, fit-outs, structural upgrades, and design-build projects across multiple sectors.",
+      "From intimate homes to national infrastructure, we handle: Residential (Homes, Condos, Apartments), Commercial (Offices, Retail, Restaurants), Industrial (Warehouses, Factories), Institutional (Schools, Hospitals, Government Facilities), and Infrastructure (Roads, Bridges, Utilities). No project is too complex.",
   },
   {
     question: "What Construction Materials do you supply?",
     answer:
-      "We supply selected construction materials aligned with project specifications, quality standards, and budget requirements.",
+      "We stock and supply premium-grade materials: Concrete & Cement, Structural Steel, Lumber & Timber, Plumbing Fixtures, Electrical Components, Roofing Systems, Flooring Solutions, Insulation & Drywall, Windows & Doors, and Protective Coatings — all sourced for durability and value.",
+  },
+  {
+    question: "Can you assist with sourcing specialized materials?",
+    answer:
+      "Absolutely. Through our extensive supplier network across Asia and beyond, we source rare, custom, or high-spec materials — whether it’s imported marble, seismic-grade steel, or smart-building tech — ensuring quality, compliance, and cost-efficiency.",
   },
   {
     question: "Do you handle both residential and commercial projects?",
     answer:
-      "Yes. Our team handles both residential and commercial projects, with solutions tailored to each project’s scope and technical requirements.",
+      "Yes. Whether it’s a luxury villa or a corporate headquarters, our teams are scaled and specialized to deliver excellence in both residential and commercial sectors — with dedicated project managers, engineers, and craftsmen for each vertical.",
   },
   {
     question: "How can I request a quote?",
     answer:
-      "You can request a quote through our Contact Us section by sending your project details, location, and target timeline so our team can prepare a proposal.",
+      "Reach out via phone, email, or our Contact page. Share your scope, drawings (if any), timeline, and material preferences. Within 24–48 hours, our estimators will deliver a transparent, itemized proposal — no obligations, just clarity.",
   },
   {
-    question: "What types of Construction projects do you Undertake?",
+    question: "Is Tiger’s Mark Corporation licensed and insured?",
     answer:
-      "We can support new builds, renovations, and specialized construction packages depending on project needs.",
+      "Fully licensed by Philippine regulatory bodies and comprehensively insured. We carry liability, workers’ compensation, and performance bonds — giving you peace of mind that your project, team, and investment are protected at every phase.",
+  },
+  {
+    question: "Can you Handle Projects Outside Metro Manila?",
+    answer:
+      "Yes. We’ve delivered projects across Luzon, Visayas, and Mindanao. With mobile project teams and regional logistics partners, distance is never a barrier — only an opportunity to expand our footprint of excellence.",
+  },
+  {
+    question: "Do you offer warranties on services or materials?",
+    answer:
+      "We stand by our work. All projects include industry-standard warranties: 1-year on workmanship, 2+ years on structural elements, and manufacturer-backed warranties on supplied materials. Post-completion support is part of our commitment.",
   },
 ];
 
