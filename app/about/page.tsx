@@ -1,4 +1,6 @@
-﻿export default function AboutPage() {
+﻿import Image from "next/image";
+
+export default function AboutPage() {
   return (
     <main className="about-page" aria-labelledby="about-heading">
       <section className="about-top">
@@ -27,7 +29,13 @@
         <div className="container about-mission-panel">
           <article className="about-item">
             <span className="about-item-icon" aria-hidden="true">
-              ◎
+              <Image
+                src="/about/vision.png"
+                alt=""
+                width={32}
+                height={32}
+                className="about-item-icon-image"
+              />
             </span>
             <div>
               <h2 className="about-item-title">Vision</h2>
@@ -45,7 +53,13 @@
 
           <article className="about-item">
             <span className="about-item-icon" aria-hidden="true">
-              ◎
+              <Image
+                src="/about/mission.png"
+                alt=""
+                width={32}
+                height={32}
+                className="about-item-icon-image"
+              />
             </span>
             <div>
               <h2 className="about-item-title">Mission</h2>
