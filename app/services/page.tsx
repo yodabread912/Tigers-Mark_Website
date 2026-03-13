@@ -81,7 +81,7 @@ export default function ServicesPage() {
           <article className="service-card">
             <span className="service-icon" aria-hidden="true">
               <Image
-                src="/services/project-management-v2.png"
+                src="/services/clipboard-list-svgrepo-com.png"
                 alt=""
                 width={30}
                 height={30}
