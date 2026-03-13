@@ -10,8 +10,8 @@ export default function Header() {
           Tiger&apos;s Mark
         </Link>
         <button
+          type="button"
           className="nav-toggle"
-          aria-expanded={open}
           onClick={() => setOpen(!open)}
           aria-label="Toggle navigation"
         >
