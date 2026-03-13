@@ -15,11 +15,21 @@ async function resolveValue<T>(value: T | Promise<T> | undefined) {
 
 export default async function PartnerDetailPage({
   params,
+  searchParams,
 }: {
   params?: { id?: string } | Promise<{ id?: string }>;
+  searchParams?:
+    | { page?: string | string[] }
+    | Promise<{ page?: string | string[] }>;
 }) {
   const resolvedParams = await resolveValue(params);
+  const resolvedSearchParams = await resolveValue(searchParams);
   const safeId = Number.parseInt(resolvedParams?.id ?? "", 10);
+  const rawPage = resolvedSearchParams?.page;
+  const firstPageValue = Array.isArray(rawPage) ? rawPage[0] : rawPage;
+  const parsedPage = Number.parseInt(firstPageValue ?? "", 10);
+  const returnPage =
+    Number.isInteger(parsedPage) && parsedPage > 1 ? parsedPage : 1;
 
   if (!Number.isInteger(safeId)) {
     notFound();
@@ -34,7 +44,7 @@ export default async function PartnerDetailPage({
   return (
     <main className="project-detail partner-detail-page">
       <Link
-        href="/partners"
+        href={returnPage > 1 ? `/partners?page=${returnPage}` : "/partners"}
         className="project-back"
         aria-label="Back to partners and clients"
       >

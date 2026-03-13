@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
 const PROJECTS = [
@@ -758,9 +759,12 @@ const ITEMS_PER_PAGE = 6;
 const PAGE_WINDOW_SIZE = 5;
 
 export default function ProjectsPage() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [projectType, setProjectType] = useState("All Projects");
-  const [currentPage, setCurrentPage] = useState(1);
 
   const projectTypes = useMemo(
     () => [
@@ -790,7 +794,32 @@ export default function ProjectsPage() {
     Math.ceil(filteredProjects.length / ITEMS_PER_PAGE),
   );
 
-  const safeCurrentPage = Math.min(currentPage, totalPages);
+  const safeCurrentPage = useMemo(() => {
+    const page = Number(searchParams.get("page") ?? "1");
+
+    if (!Number.isFinite(page) || page < 1) {
+      return 1;
+    }
+
+    return Math.min(page, totalPages);
+  }, [searchParams, totalPages]);
+
+  const changePage = (nextPage: number) => {
+    const boundedPage = Math.min(Math.max(1, nextPage), totalPages);
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (boundedPage === 1) {
+      params.delete("page");
+    } else {
+      params.set("page", String(boundedPage));
+    }
+
+    const query = params.toString();
+    const nextUrl = query ? `${pathname}?${query}` : pathname;
+
+    // Keep pagination in URL so browser back/forward restores the same page.
+    router.replace(nextUrl, { scroll: false });
+  };
 
   const visibleProjects = useMemo(() => {
     const start = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
@@ -837,7 +866,7 @@ export default function ProjectsPage() {
                 value={searchQuery}
                 onChange={(event) => {
                   setSearchQuery(event.target.value);
-                  setCurrentPage(1);
+                  changePage(1);
                 }}
               />
             </div>
@@ -847,7 +876,7 @@ export default function ProjectsPage() {
               value={projectType}
               onChange={(event) => {
                 setProjectType(event.target.value);
-                setCurrentPage(1);
+                changePage(1);
               }}
             >
               {projectTypes.map((type) => (
@@ -865,12 +894,14 @@ export default function ProjectsPage() {
                 href={{
                   pathname: `/projects/${project.id}`,
                   query: {
+                    page: String(safeCurrentPage),
                     name: project.name,
                     location: project.location,
                     year: project.year,
                     type: project.type,
                     status: project.status,
                     image: project.image ?? "",
+                    images: project.image ?? "",
                   },
                 }}
                 className="project-card project-card-link"
@@ -903,7 +934,7 @@ export default function ProjectsPage() {
               className="pager-link"
               disabled={!hasPreviousWindow}
               onClick={() =>
-                setCurrentPage(
+                changePage(
                   Math.max(1, paginationWindowStart - PAGE_WINDOW_SIZE),
                 )
               }
@@ -916,7 +947,7 @@ export default function ProjectsPage() {
                 key={page}
                 type="button"
                 className={`pager-number ${safeCurrentPage === page ? "active" : ""}`}
-                onClick={() => setCurrentPage(page)}
+                onClick={() => changePage(page)}
                 aria-current={safeCurrentPage === page ? "page" : undefined}
               >
                 {page}
@@ -928,7 +959,7 @@ export default function ProjectsPage() {
               className="pager-link"
               disabled={!hasNextWindow}
               onClick={() =>
-                setCurrentPage(
+                changePage(
                   Math.min(
                     totalPages,
                     paginationWindowStart + PAGE_WINDOW_SIZE,

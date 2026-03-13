@@ -2,15 +2,45 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useMemo } from "react";
 import { PARTNERS } from "./data";
 
 const ITEMS_PER_PAGE = 12;
 
 export default function PartnersPage() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const totalPages = Math.ceil(PARTNERS.length / ITEMS_PER_PAGE);
+
+  const currentPage = useMemo(() => {
+    const page = Number(searchParams.get("page") ?? "1");
+
+    if (!Number.isFinite(page) || page < 1) {
+      return 1;
+    }
+
+    return Math.min(page, totalPages);
+  }, [searchParams, totalPages]);
+
+  const changePage = (nextPage: number) => {
+    const boundedPage = Math.min(Math.max(1, nextPage), totalPages);
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (boundedPage === 1) {
+      params.delete("page");
+    } else {
+      params.set("page", String(boundedPage));
+    }
+
+    const query = params.toString();
+    const nextUrl = query ? `${pathname}?${query}` : pathname;
+
+    // Keep pagination state in the URL so browser back/forward returns to the same page.
+    router.replace(nextUrl, { scroll: false });
+  };
 
   const visiblePartners = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -49,7 +79,12 @@ export default function PartnersPage() {
                 ) : null}
               </div>
               <Link
-                href={`/partners/${partner.id}`}
+                href={{
+                  pathname: `/partners/${partner.id}`,
+                  ...(currentPage > 1
+                    ? { query: { page: String(currentPage) } }
+                    : {}),
+                }}
                 className="partner-name-link"
               >
                 <p className="partner-name">{partner.name}</p>
@@ -62,7 +97,7 @@ export default function PartnersPage() {
           <button
             className="pager-link"
             type="button"
-            onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+            onClick={() => changePage(currentPage - 1)}
             disabled={currentPage === 1}
           >
             Previous
@@ -73,7 +108,7 @@ export default function PartnersPage() {
               key={page}
               className={`pager-number ${currentPage === page ? "active" : ""}`}
               type="button"
-              onClick={() => setCurrentPage(page)}
+              onClick={() => changePage(page)}
               aria-current={currentPage === page ? "page" : undefined}
             >
               {page}
@@ -83,9 +118,7 @@ export default function PartnersPage() {
           <button
             className="pager-link"
             type="button"
-            onClick={() =>
-              setCurrentPage((page) => Math.min(totalPages, page + 1))
-            }
+            onClick={() => changePage(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
             Next

@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import ProjectGallery from "./ProjectGallery";
 
 function getSearchParam(
   value: string | string[] | undefined,
@@ -19,6 +20,23 @@ async function resolveValue<T>(value: T | Promise<T> | undefined) {
   return await value;
 }
 
+function getImagesParam(
+  value: string | string[] | undefined,
+  fallbackImage: string,
+) {
+  const imagesFromQuery = (Array.isArray(value) ? value : [value])
+    .filter((item): item is string => typeof item === "string")
+    .flatMap((item) => item.split(","))
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  if (imagesFromQuery.length > 0) {
+    return Array.from(new Set(imagesFromQuery));
+  }
+
+  return fallbackImage ? [fallbackImage] : [];
+}
+
 export default async function ProjectDetailPage({
   params,
   searchParams,
@@ -34,6 +52,11 @@ export default async function ProjectDetailPage({
   const safeId =
     typeof resolvedParams?.id === "string" ? resolvedParams.id : "1";
   const safeSearchParams = resolvedSearchParams ?? {};
+  const rawPage = safeSearchParams.page;
+  const firstPageValue = Array.isArray(rawPage) ? rawPage[0] : rawPage;
+  const parsedPage = Number.parseInt(firstPageValue ?? "", 10);
+  const returnPage =
+    Number.isInteger(parsedPage) && parsedPage > 1 ? parsedPage : 1;
   const fallbackName = `PROJECT NAME ${safeId.padStart(2, "0")}`;
 
   const project = {
@@ -43,48 +66,19 @@ export default async function ProjectDetailPage({
     services: "Lorem ipsum",
     image: getSearchParam(safeSearchParams.image, ""),
   };
+  const projectImages = getImagesParam(safeSearchParams.images, project.image);
 
   return (
     <main className="project-detail">
       <Link
-        href="/projects"
+        href={returnPage > 1 ? `/projects?page=${returnPage}` : "/projects"}
         className="project-back"
         aria-label="Back to projects"
       >
         &laquo;
       </Link>
       <div className="project-detail-inner">
-        <div className="project-gallery">
-          <button
-            className="project-gallery-nav left"
-            type="button"
-            aria-label="Previous image"
-          >
-            &lsaquo;
-          </button>
-          <div className="project-gallery-frame" aria-label="Project images">
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={project.name}
-                className="project-gallery-image"
-              />
-            ) : null}
-          </div>
-          <button
-            className="project-gallery-nav right"
-            type="button"
-            aria-label="Next image"
-          >
-            &rsaquo;
-          </button>
-        </div>
-
-        <div className="project-dots" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
+        <ProjectGallery images={projectImages} projectName={project.name} />
         <h1 className="project-title-detail">{project.name}</h1>
 
         <div className="project-info-grid">

@@ -22,7 +22,7 @@ export default function Navigation() {
           <Link href="/projects">Projects</Link>
           <Link href="/partners">Partners</Link>
         </nav>
-        <Link href="/contact" className="btn btn-primary">
+        <Link href="/contact" className="btn btn-primary nav-cta">
           Get a Quote
         </Link>
       </div>
