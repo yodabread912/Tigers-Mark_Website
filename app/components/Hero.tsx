@@ -29,10 +29,16 @@ export default function Hero() {
             </p>
           </div>
           <div className="hero-ctas">
-            <Link href="/projects" className="btn btn-primary">
-              Explore our projects
+            <Link
+              href="/projects"
+              className="btn btn-primary hero-cta-button hero-cta-button-primary"
+            >
+              Explore Our Projects
             </Link>
-            <a href="#contact-us" className="btn btn-ghost">
+            <a
+              href="#contact-us"
+              className="btn btn-ghost hero-cta-button hero-cta-button-secondary"
+            >
               Contact Us
             </a>
           </div>
