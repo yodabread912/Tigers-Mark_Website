@@ -2,31 +2,92 @@
 
 import { useState } from "react";
 
-const PRODUCT_NAMES = [
-  "Roofing Solutions",
-  "Roofing Pipes",
-  "HDPE Solid Pipes",
-  "Structured Wall Pipes",
-  "Gabion Systems",
-  "UPVC Ceiling Panels",
+const QUOTE_PRODUCTS = [
+  {
+    id: 1,
+    name: "Roofing Solutions",
+    badge: "Weather Shield",
+    description:
+      "Protective roofing systems designed for thermal efficiency, durability, and superior water resistance.",
+    features: [
+      "All-Weather Protection",
+      "Thermal & Energy Efficiency",
+      "Long-Term Durability",
+      "Water & Wind Resistant",
+      "Customizable for Pitched or Flat Roof",
+    ],
+  },
+  {
+    id: 2,
+    name: "Roofing Pipes",
+    badge: "Corrosion Resistant",
+    description:
+      "Lightweight, durable plastic pipes ideal for plumbing and drainage systems. Resistant to chemicals, rust, and scaling.",
+    features: [
+      "Chemical & Corrosion Resistant",
+      "Low Maintenance & Long Lifespan",
+      "Easy Installation with Solvent Welding",
+      "Cost-Effective Alternative to Metal",
+      "Smooth Interior for Efficient Flow",
+    ],
+  },
+  {
+    id: 3,
+    name: "HDPE Solid Pipes",
+    badge: "High Pressure",
+    description:
+      "Made from high-density polyethylene, these solid pipes offer exceptional strength and flexibility for pressurized fluid transport.",
+    features: [
+      "High Strength & Pressure Resistance",
+      "Leak-Proof Joint Systems",
+      "Durable in Harsh Environments",
+      "Lightweight & Easy to Transport",
+      "Resistant to Chemicals & Abrasion",
+    ],
+  },
+  {
+    id: 4,
+    name: "Structured Wall Pipes",
+    badge: "Cost Efficient",
+    description:
+      "Spirally wound, lightweight pipes with optimized strength for drainage, sewage, and utility applications.",
+    features: [
+      "Lightweight Yet High Ring Stiffness",
+      "Cost-Effective Installation",
+      "Corrosion & Chemical Resistant",
+      "Flexible for Ground Movement",
+      "Long Service Life with Minimal Maintenance",
+    ],
+  },
+  {
+    id: 5,
+    name: "Gabion Systems",
+    badge: "Eco-Friendly",
+    description:
+      "Wire mesh cages filled with stones for erosion control, slope stabilization, and architectural retaining walls.",
+    features: [
+      "Natural Drainage & Permeability",
+      "Eco-Friendly & Sustainable",
+      "Flexible Structure Absorbs Stress",
+      "Low Maintenance & Long Lasting",
+      "Aesthetic Integration with Landscape",
+    ],
+  },
+  {
+    id: 6,
+    name: "UPVC Ceiling Panels",
+    badge: "Moisture Proof",
+    description:
+      "Modern, hygienic ceiling solution for interiors - waterproof, easy to clean, and available in stylish finishes.",
+    features: [
+      "100% Waterproof & Termite Proof",
+      "Low Maintenance & Easy to Install",
+      "Thermal & Acoustic Insulation",
+      "Modern Aesthetic Appeal",
+      "Ideal for Kitchens, Bathrooms & Commercial Spaces",
+    ],
+  },
 ];
-
-const PRODUCT_BADGES = [
-  "Weather Shield",
-  "Corrosion Resistant",
-  "High Pressure",
-  "Cost Efficient",
-  "Eco-Friendly",
-  "Moisture Proof",
-];
-
-const QUOTE_PRODUCTS = Array.from({ length: 18 }, (_, index) => ({
-  id: index + 1,
-  name:
-    PRODUCT_NAMES[index] ??
-    `Product Name ${String(index + 1).padStart(2, "0")}`,
-  badge: PRODUCT_BADGES[index] ?? "Lorem",
-}));
 
 const ITEMS_PER_PAGE = 6;
 
@@ -69,13 +130,11 @@ export default function QuotePage() {
               </div>
               <div className="quote-content">
                 <h2 className="quote-name">{product.name}</h2>
-                <p className="quote-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Aenean commodo ligula eget dolor. Aenean massa.
-                </p>
+                <p className="quote-text">{product.description}</p>
                 <ul className="quote-list">
-                  <li>Lorem ipsum</li>
-                  <li>Lorem ipsum</li>
+                  {product.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
                 </ul>
               </div>
             </article>

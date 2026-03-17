@@ -1,5 +1,6 @@
 import { Roboto } from "next/font/google";
 import Navigation from "./components/Navigation";
+import ChatHelper from "./components/ChatHelper";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body className={`${roboto.variable} antialiased`}>
         <Navigation />
         <main>{children}</main>
+        <ChatHelper />
       </body>
     </html>
   );
